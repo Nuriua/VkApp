@@ -13,7 +13,7 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.vkapp.domain.FeedPost
+import com.example.vkapp.domain.entity.FeedPost
 import com.example.vkapp.ui.theme.DarkBlue
 
 @Composable

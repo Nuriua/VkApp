@@ -1,6 +1,6 @@
 package com.example.vkapp.presentation.news
 
-import com.example.vkapp.domain.FeedPost
+import com.example.vkapp.domain.entity.FeedPost
 
 sealed class NewsFeedScreenState {
 

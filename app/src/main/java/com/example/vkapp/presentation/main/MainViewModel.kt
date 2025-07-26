@@ -3,18 +3,23 @@ package com.example.vkapp.presentation.main
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.vkapp.data.repository.NewsFeedRepository
+import com.example.vkapp.data.repository.NewsFeedRepositoryImpl
+import com.example.vkapp.domain.usecases.CheckAuthStateUseCase
+import com.example.vkapp.domain.usecases.GetAuthStateFlowUseCase
 import kotlinx.coroutines.launch
 
 class MainViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val repository = NewsFeedRepository(application)
+    private val repository = NewsFeedRepositoryImpl(application)
 
-    val authState = repository.authStateFlow
+    private val getAuthStateFlowUseCase = GetAuthStateFlowUseCase(repository)
+    private val checkAuthStateUseCase = CheckAuthStateUseCase(repository)
+
+    val authState = getAuthStateFlowUseCase()
 
     fun performAuthResult() {
         viewModelScope.launch {
-            repository.checkAuthState()
+            checkAuthStateUseCase()
         }
     }
 }
