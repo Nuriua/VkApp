@@ -19,8 +19,8 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.AsyncImage
 import com.example.vkapp.R
-import com.example.vkapp.domain.FeedPost
-import com.example.vkapp.domain.PostComment
+import com.example.vkapp.domain.entity.FeedPost
+import com.example.vkapp.domain.entity.PostComment
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

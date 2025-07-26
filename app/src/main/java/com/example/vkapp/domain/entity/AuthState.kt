@@ -1,4 +1,4 @@
-package com.example.vkapp.domain
+package com.example.vkapp.domain.entity
 
 sealed class AuthState {
 
