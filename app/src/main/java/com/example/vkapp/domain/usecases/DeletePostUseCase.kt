@@ -2,8 +2,9 @@ package com.example.vkapp.domain.usecases
 
 import com.example.vkapp.domain.entity.FeedPost
 import com.example.vkapp.domain.repository.NewsFeedRepository
+import javax.inject.Inject
 
-class DeletePostUseCase(
+class DeletePostUseCase @Inject constructor(
     private val repository: NewsFeedRepository
 ) {
 
