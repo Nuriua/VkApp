@@ -4,8 +4,9 @@ import com.example.vkapp.domain.entity.FeedPost
 import com.example.vkapp.domain.entity.PostComment
 import com.example.vkapp.domain.repository.NewsFeedRepository
 import kotlinx.coroutines.flow.StateFlow
+import javax.inject.Inject
 
-class GetCommentsUseCase(
+class GetCommentsUseCase @Inject constructor(
     private val repository: NewsFeedRepository
 ) {
 
