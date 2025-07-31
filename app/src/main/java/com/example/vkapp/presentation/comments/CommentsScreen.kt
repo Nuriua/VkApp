@@ -1,6 +1,5 @@
 package com.example.vkapp.presentation.comments
 
-import android.app.Application
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -12,7 +11,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -21,17 +19,33 @@ import coil.compose.AsyncImage
 import com.example.vkapp.R
 import com.example.vkapp.domain.entity.FeedPost
 import com.example.vkapp.domain.entity.PostComment
-import com.example.vkapp.presentation.ViewModelFactory
+import com.example.vkapp.presentation.getApplicationComponent
+import androidx.compose.runtime.State
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CommentsScreen(
-    viewModelFactory: ViewModelFactory,
     onBackPressed: () -> Unit,
     feedPost: FeedPost,
 ) {
-    val viewModel: CommentsViewModel = viewModel(factory = viewModelFactory)
+    val component = getApplicationComponent()
+        .getCommentsScreenComponentFactory()
+        .create(feedPost)
+
+    val viewModel: CommentsViewModel = viewModel(factory = component.getViewModelFactory())
     val screenState = viewModel.screenState.collectAsState(CommentsScreenState.Initial)
+    CommentsScreenContent(
+        screenState = screenState,
+        onBackPressed = onBackPressed
+    )
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+private fun CommentsScreenContent(
+    screenState: State<CommentsScreenState>,
+    onBackPressed: () -> Unit,
+) {
     val currentState = screenState.value
 
     if (currentState is CommentsScreenState.Comments) {
